@@ -43,8 +43,9 @@ class Model {
         const entries = Object.entries(body)
         const query = `INSERT INTO ${this.name} (${entries.map(
             (entry) => entry[0]
-        )}) VALUES(${entries.map((entry) => entry[1])})`
-        return query
+        )}) VALUES(${entries.map((entry) => `'${entry[1]}'`)})`
+        const response = await this.run(query)
+        return response;
     }
 }
 
