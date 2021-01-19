@@ -1,13 +1,13 @@
 const express = require("express");
 const Model = require("../../utilities/model");
-const Articles = new Model("articles");
+const categories = new Model("articles");
 
 const router = express.Router();
 
 router.get("/:id", async (req, res) => {
     try {
-        const singleArticle = await Articles.findById(req.params.id);
-        res.send(singleArticle);
+        const singlecategory = await categories.findById(req.params.id);
+        res.send(singlecategory);
     } catch (error) {
         console.log(error);
         res.status(500).send(error);
@@ -16,8 +16,8 @@ router.get("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
     try {
-        const updateArticle = await Articles.findByIdAndUpdate(req.params.id, req.body);
-        res.send(updateArticle);
+        const updateCategory = await categories.findByIdAndUpdate(req.params.id, req.body);
+        res.send(updateCategory);
     } catch (error) {
         console.log(error);
         res.status(500).send(error);
@@ -26,8 +26,8 @@ router.put("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
     try {
-        const postArticle = await Articles.save(req.body);
-        res.send(postArticle);
+        const postCategory = await categories.save(req.body);
+        res.send(postCategory);
     } catch (error) {
         console.log(error);
         res.status(500).send(error);
@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
     try {
-        await Articles.findByIdAndDelete(req.params.id);
+        await categories.findByIdAndDelete(req.params.id);
         res.send("yeeted");
     } catch (error) {
         console.log(error);
@@ -47,8 +47,8 @@ router.delete("/:id", async (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
-        const getAllArticle = await Articles.findOne();
-        res.send(getAllArticle);
+        const getAllCategories = await categories.findOne();
+        res.send(getAllCategories);
     } catch (error) {
         console.log(error);
         res.status(500).send(error);
