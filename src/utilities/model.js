@@ -47,6 +47,15 @@ class Model {
         const response = await this.run(query)
         return response;
     }
+
+    async findByIdAndDelete(id) {
+        if (!id) {
+            throw new Error('Hey you did not provided id!')
+        }
+        const query = `DELETE  FROM ${this.name} WHERE id=${parseInt(id)}`
+        const response = await this.run(query);
+        return response;
+    }
 }
 
 module.exports = Model;
