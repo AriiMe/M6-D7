@@ -167,6 +167,18 @@ class Model {
       return response.rows;
     }
   }
+
+  async countedCategories() {
+    const query = `SELECT
+    categories.id,
+    categories.name,
+    COUNT(articles.categoriesid) AS total_articles
+    FROM categories
+    INNER JOIN articles ON categories.id = articles.categoriesid
+    GROUP BY (categories.id)`
+    const response = await this.run(query);
+    return response;
+  }
 }
 
 module.exports = Model;
